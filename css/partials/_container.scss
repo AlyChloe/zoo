@@ -1,0 +1,59 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  top: 295px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+
+  section {
+    width: 21%;
+    float: left;
+    padding-right: 40px;
+    padding-bottom: 25px;
+    @include media(tablet) {
+      width: 43%;
+    }
+
+    @include media(mobile) {
+      width: 95%;
+    }
+
+    &:nth-child(4) {
+      padding-right: 0;
+    }
+
+    &:nth-child(even) {
+      @include media(tablet) {
+        padding-right: 0;
+      }
+    }
+
+    div {
+      width: 100%;
+      float: left;
+      border-radius: 5px;
+      background: #ededed;
+
+      h1 {
+        font-family: 'Dosis', sans-serif;
+        font-size: 26px;
+        text-align: center;
+      }
+
+      img {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+
+      p {
+        padding-left: 15px;
+      }
+    }
+  }
+}
