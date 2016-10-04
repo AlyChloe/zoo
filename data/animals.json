@@ -1,0 +1,24 @@
+{
+  "animals": [
+    {
+      "name": "lion",
+      "dateOfBirth": "1978, 10, 3",
+      "color": "#f9b233"
+    },
+    {
+      "name": "gorilla",
+      "dateOfBirth": "1989, 3, 24",
+      "color": "#797978"
+    },
+    {
+      "name": "snake",
+      "dateOfBirth": "1999, 4, 14",
+      "color": "#00a19a"
+    },
+    {
+      "name": "whale",
+      "dateOfBirth": "2014, 1, 19",
+      "color": "#77aad4"
+    }
+  ]
+}

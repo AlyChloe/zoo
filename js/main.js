@@ -12,7 +12,7 @@ $(document).ready(function() {
       },
       age: function() {
         var currentDate = new Date();
-        var animalAge = this.info.dateOfBirth;
+        var animalAge = new Date(this.info.dateOfBirth);
         var ageDiff = currentDate - animalAge;
         return Math.floor(ageDiff / (1000 * 60 * 60 * 24 * 365.25)) + ' years';
       },
@@ -77,28 +77,44 @@ $(document).ready(function() {
       console.log('This is toString for ' + this.info.name);
     }
 
-    var lion = new animal('lion', new Date(1978, 10, 3), '#f9b233');
-    lion.buildMe();
-    lion.toString();
+    var promise = $.get('data/animals.json');
 
-    var gorilla = new animal('gorilla', new Date(1989, 3, 24), '#797978');
-    gorilla.buildMe();
-    gorilla.toString();
-
-    var snake = new animal('snake', new Date(1999, 4, 14), '#00a19a');
-    snake.buildMe();
-    snake.toString();
-
-    var whale = new animal('whale', new Date(2014, 1, 19), '#77aad4');
-    whale.buildMe();
-    whale.toString();
-
-    try {
-      if (this.info.name instanceof animal) throw this.info.name + ' is not an instanceof.';
-    } catch (error) {
+    promise.then(function(lion) {
+      var Lion = new animal(lion.animals[0].name, lion.animals[0].dateOfBirth, lion.animals[0].color);
+      Lion.buildMe();
+      Lion.toString();
+      giveBirth('lion', lion.animals[0].color);
+      return promise;
+    }).then(function(gorilla) {
+      var Gorilla = new animal(gorilla.animals[1].name, gorilla.animals[1].dateOfBirth, gorilla.animals[1].color);
+      Gorilla.buildMe();
+      Gorilla.toString();
+      giveBirth('gorilla', gorilla.animals[1].color);
+      return promise;
+    }).then(function(snake) {
+      var Snake = new animal(snake.animals[2].name, snake.animals[2].dateOfBirth, snake.animals[2].color);
+      Snake.buildMe();
+      Snake.toString();
+      giveBirth('snake', snake.animals[2].color);
+      return promise;
+    }).then(function(whale) {
+      var Whale = new animal(whale.animals[3].name, whale.animals[3].dateOfBirth, whale.animals[3].color);
+      Whale.buildMe();
+      Whale.toString();
+      giveBirth('whale', whale.animals[3].color);
+    }).catch(function(error) {
       console.log(error);
-    } finally {
-      console.log('this works!');
-    }
+    });
 
+    function giveBirth(animal, color) {
+      $(document).on('click', '.' + animal, function() {
+        console.log('in');
+        $('.' + animal).css('background', color);
+        $('.' + animal + ' .age').css('visibility', 'hidden');
+        $('.' + animal + ' .animalSound').css('visibility', 'hidden');
+        $('.' + animal + ' .birth').text('YAY! Your ' + animal + ' gave birth!');
+        $('.' + animal + ' .birth').css('fontWeight', 'bold');
+        $('.' + animal + ' .birth').css('textAlign', 'center');
+      });
+    }
 });

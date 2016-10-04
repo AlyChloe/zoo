@@ -7,18 +7,34 @@
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  right: 0; }
+  right: 0;
+  text-align: center; }
+  @media only screen and (max-width: 430px) {
+    .container {
+      text-align: left; } }
   .container section {
-    width: 21%;
-    float: left;
-    padding-right: 40px;
+    width: 20.2%;
+    display: inline-block;
+    padding-right: 44px;
     padding-bottom: 25px; }
     @media only screen and (max-width: 930px) {
       .container section {
-        width: 43%; } }
+        width: 41%; } }
     @media only screen and (max-width: 430px) {
       .container section {
         width: 95%; } }
+    .container section:hover {
+      animation: shake 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      backface-visibility: hidden; }
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0); } }
     .container section:nth-child(4) {
       padding-right: 0; }
     @media only screen and (max-width: 930px) {
@@ -26,7 +42,6 @@
         padding-right: 0; } }
     .container section div {
       width: 100%;
-      float: left;
       border-radius: 5px;
       background: #ededed; }
       .container section div h1 {
